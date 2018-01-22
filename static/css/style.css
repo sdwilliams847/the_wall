@@ -1,0 +1,48 @@
+h1 {
+    color:  rgb(79, 79, 243);
+}
+
+.comment {
+    padding-left: 5%;
+}
+
+.navbar {
+    background-color:  rgb(61, 76, 90);
+}
+
+.navbar a {
+    color: rgb(79, 79, 243);
+}
+
+.postMessage {
+    width: 90%;
+    background-color: rgb(236, 236, 236)
+}
+.postComment {
+    width: 60%;
+    background-color: rgb(236, 236, 236)
+}
+.container {
+    background-color: rgb(185, 200, 212);
+} 
+
+.welcome {
+    color: rgb(79, 79, 243);
+}
+body {
+    background-color: rgb(101, 114, 128);
+}
+
+.commentDate {
+    font-size: 80%;
+    margin-top: 2px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.messageDate {
+    font-size: 80%;
+    margin-top: 6px;
+    margin-left: 15px;
+    margin-right: 5px;
+}

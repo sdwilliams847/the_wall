@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Wall</title>
+    <link href="static/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet" type="text/css" >
+</head>
+<body>
+    <div class="container">
+        <div class = 'row navbar'>
+            <div class="col-md-9">
+                <h1>The Wall</h1>
+            </div>
+            <div class="col-md-3">
+                <h4 class="welcome">Welcome, {{session['name']}}</h4>
+                <a href="/logout"><p>Log off</p></a>
+            </div>
+        </div>
+        <div class = 'body'>
+            <h3>Post a Message</h3>
+            <form action= '/message' method='POST' class = 'message'>
+                <div class="form-group">
+                    <textarea class="postMessage" value='message' name='message' rows='6'></textarea><br>
+                    <input type="submit" class="btn btn-primary" value="Post Message">
+                </div>
+            </form><br>
+            {% for message in wallMessages %}
+                    <div class="row">
+                        <p class="messageDate">{{message.created_at}}</p>
+                        <h4>{{message.first_name}} {{message.last_name}}:</h4>
+                    </div>
+                        <!-- message text here -->   
+                        <div>
+                        <p>{{ message.message }}</p>
+                            {% if message.user_id == session['id'] %}
+                                <form action="/delete" method='POST'>
+                                    <input type="hidden" name='message.user_id' value='{{message.user_id}}'>
+                                    <input type="hidden" name="message.id" value='{{message.id}}'>
+                                    <input type='submit' class="btn btn-default btn-sm" value='Delete'>
+                                </form>
+                            {% endif %}<br>                       
+                {% for comment in mComments %}
+                    {% if comment.message_id == message.id%}
+                    <div class='comment'>
+                        <div class="row">
+                            <p class="commentDate">{{comment.created_at}}</p>
+                            <h6>{{comment.first_name}} {{comment.last_name}}:</h6>
+                        </div>
+                            <p class="cmText">{{comment.comment}}</p>
+                            {% if comment.user_id == session['id'] %}
+                            <form action="/delete/comment" method='POST'>
+                                <div class="form-group">
+                                    <input type="hidden" name='comment.user_id' value='{{comment.user_id}}'>
+                                    <input type="hidden" name='id' value='{{comment.id}}'>
+                                    <input type='submit' class="btn btn-default btn-sm" value='Delete'>
+                                </div>
+                            </form>
+                            {% endif %}<br>
+                    {% endif %}
+                {% endfor %}
+                        <h3>Leave a Comment</h3><br>
+                        <form action='/comment' method='POST' class = 'message'>
+                            <div class="form-group">
+                                <textarea class="postComment"value='comment' name='comment'rows='4' cols='65'></textarea><br>
+                                <input type="hidden" value="{{message.id}}" name="message_id">
+                                <input type="submit" class="btn btn-primary" value="Post Comment"><br><br>
+                            </div>
+                        </form>
+                    </div>            
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

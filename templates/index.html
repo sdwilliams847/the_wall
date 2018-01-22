@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+    <link href="static/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <div class="row navbar">
+            <h1>The Wall</h1>
+        </div>
+        <div class="row">
+        <div class="col-md-6">
+            <br><fieldset>        
+            <legend>Registration Form</legend>
+                <form action="/newUser" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email: </label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="first_name">First Name: </label>
+                        <input type="text" class="form-control" id="last_name" name="first_name" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name: </label>
+                        <input type="text" class="form-control" id="last_name"name="last_name" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password: </label>
+                        <input type="text" class="form-control" id="password" name="password"placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="pw2">Confirm Password: </label>
+                        <input type="text" class="form-control" id="pw2" name="pw2" placeholder="Password">
+                    </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                {% with messages = get_flashed_messages(category_filter = ['ERROR']) %}
+                    {% if messages %}
+                        <ul>    
+                        {% for message in messages %}
+                            <li style="color: red;">{{message}}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </fieldset>
+            </div>
+            <div class="col-md-6">
+            <br><fieldset>
+                <legend>Login to The Wall</legend>
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email: </label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password: </label>
+                        <input type="text" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                {% with messages = get_flashed_messages(category_filter = ['ERROR2']) %}
+                    {% if messages %}
+                    <ul>    
+                        {% for message in messages %}
+                            <li style="color: red;">{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
+            </fieldset>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
