@@ -34,7 +34,7 @@
                     </div>
                         <!-- message text here -->   
                         <div>
-                        <p>{{ message.message }}</p>
+                        <p><pre>{{ message.message }}</pre></p>
                             {% if message.user_id == session['id'] %}
                                 <form action="/delete" method='POST'>
                                     <input type="hidden" name='message.user_id' value='{{message.user_id}}'>
@@ -49,7 +49,7 @@
                             <p class="commentDate">{{comment.created_at}}</p>
                             <h6>{{comment.first_name}} {{comment.last_name}}:</h6>
                         </div>
-                            <p class="cmText">{{comment.comment}}</p>
+                            <p class="cmText"><pre>{{comment.comment}}</pre></p>
                             {% if comment.user_id == session['id'] %}
                             <form action="/delete/comment" method='POST'>
                                 <div class="form-group">

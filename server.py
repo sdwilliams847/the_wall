@@ -85,7 +85,7 @@ def login():
 			session["id"] = user_list[0]["id"]
 			return redirect("/theWall")
 		else:
-			flash("Incorrect password", "ERROR")
+			flash("Incorrect password", "ERROR2")
 
 	return redirect('/')
 
@@ -154,4 +154,4 @@ def deleteComment():
 
 	return redirect('/theWall')
 
-app.run(debug=True)
+app.run(debug=True, host="0.0.0.0")
